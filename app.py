@@ -31,21 +31,20 @@ def create_store():
     return jsonify(new_store)
 
 
-# GET /store/<string:name>
-@app.route('/store/<string:name>')
-def get_store(name):
-    #iterate over stores
-    for st in stores:
-        if st['name'] == name:
-            return jsonify(st)
-        else:
-            return jsonify({'message': 'store not found'})
-
-
 # GET /store
 @app.route('/store')
 def get_stores():
     return jsonify({'stores':stores})
+
+
+# GET /store/<string:name>
+@app.route('/store/<string:name>')
+def get_store(name):
+    #iterate over stores
+    for store in stores:
+        if store['name'] == name:
+            return jsonify(store)
+    return jsonify({'message': 'store not found'})
 
 
 # POST /store/<string:name>/item {name:, price:}
@@ -67,7 +66,7 @@ def create_item_in_store(name):
 @app.route('/store/<string:name>/item')
 def get_items_in_store(name):
     for store in stores:
-        if store['name'] ==name:
+        if store['name'] == name:
             return jsonify({'items':store['items']})
     return jsonify({'message':'store not found'})
 
