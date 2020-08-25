@@ -37,7 +37,7 @@ def get_stores():
     return jsonify({'stores':stores})
 
 
-# GET /store/<string:name>
+# GET /store/<string:name> ashbalaxa
 @app.route('/store/<string:name>')
 def get_store(name):
     #iterate over stores
